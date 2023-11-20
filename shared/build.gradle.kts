@@ -39,9 +39,12 @@ kotlin {
 
                 // Ktor
                 implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.json)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.client.serialization)
+
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+                implementation (libs.kotlinx.serialization.json )
 
                 // Kotlinx Serialization
                 implementation(libs.kotlinx.serialization.core)
@@ -50,6 +53,17 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }
